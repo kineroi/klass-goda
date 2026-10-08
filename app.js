@@ -112,11 +112,14 @@ function toEntries(rows, config) {
   const lookup = buildCriterionLookup(config.criteria);
   const warnings = [];
   const entries = [];
-  rows.slice(1).forEach((r, i) => {
-    const line = i + 2;
+  // the header row is optional: skip the first row only if it does not start with a date
+  const hasHeader = rows.length > 0 && !/^\d{4}-\d{2}-\d{2}$/.test((rows[0][0] || "").trim());
+  const aliases = config.aliases || {};
+  rows.slice(hasHeader ? 1 : 0).forEach((r, i) => {
+    const line = i + (hasHeader ? 2 : 1);
     const [date = "", quarter = "", cls = "", crit = "", pts = "", reason = ""] = r.map((c) => c.trim());
     const q = Number(quarter);
-    const classId = normClass(cls);
+    const classId = aliases[normClass(cls)] || normClass(cls);
     const critId = lookup.get(crit.toLowerCase()) || lookup.get(crit.toLowerCase().replace(/ё/g, "е"));
     const points = Number(pts.replace(",", ".").replace("−", "-"));
     if (![1, 2, 3, 4].includes(q)) return warnings.push(`строка ${line}: четверть «${quarter}»`);
@@ -338,7 +341,7 @@ function renderLegend() {
 
 function renderJournalFilter() {
   const sel = $("#journal-class");
-  sel.replaceChildren(el("option", { value: "all" }, "Все классы"), ...Object.entries(state.config.classes).map(([id, name]) => el("option", { value: id }, name)));
+  sel.replaceChildren(el("option", { value: "all" }, "Все классы"), ...state.config.leagues.flatMap((l) => l.classes).map((id) => el("option", { value: id }, state.config.classes[id])));
   sel.value = state.journalClass;
   sel.onchange = () => {
     state.journalClass = sel.value;
