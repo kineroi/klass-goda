@@ -409,7 +409,6 @@ function renderCriteriaTable() {
         el("th", { scope: "row" }, el("span", { class: "dot", style: `background:${c.color};margin-right:8px` }), c.name),
         el("td", { class: "num" }, c.max),
         el("td", {}, c.rule),
-        el("td", {}, c.who),
       ),
     ),
   );

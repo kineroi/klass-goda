@@ -671,10 +671,6 @@ select:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
-.criteria-table td:last-child {
-  color: var(--text-2);
-}
-
 .criteria-table tfoot th,
 .criteria-table tfoot td {
   background: var(--surface-2);
@@ -709,21 +705,11 @@ select:focus-visible {
     border: 0;
   }
 
-  .criteria-table tbody td:nth-of-type(2),
-  .criteria-table tbody td:nth-of-type(3) {
+  .criteria-table tbody td:nth-of-type(2) {
     grid-column: 1 / -1;
   }
 
-  .criteria-table tbody td:nth-of-type(3) {
-    font-size: 13px;
-  }
-
-  .criteria-table tbody td:nth-of-type(3)::before {
-    content: "Вносит: ";
-    font-weight: 700;
-  }
-
-  .criteria-table tfoot td[colspan] {
+  .criteria-table tfoot td:empty {
     display: none;
   }
 }
