@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Класс года — Николаевская школа</title>
+    <meta name="description" content="Рейтинг классов КГУ «Николаевская основная средняя школа»: учёба, дисциплина, мероприятия и добрые дела. По итогам года выбираем Класс года." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233b6ef5'/%3E%3Cpath d='M18 22h28v6a14 14 0 0 1-28 0z' fill='%23ffc93c'/%3E%3Crect x='28' y='40' width='8' height='8' fill='%23ffc93c'/%3E%3Crect x='22' y='46' width='20' height='6' rx='2' fill='%23ffc93c'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <div id="demo-banner" class="demo-banner" hidden>Демо-режим: показаны примерные баллы, не настоящие.</div>
+
+    <header class="hero">
+      <div class="wrap">
+        <p class="kicker" id="school-name">КГУ «Николаевская основная средняя школа»</p>
+        <h1 class="hero-title"><span>Класс года</span> <span class="hero-year" id="year-label">2026–2027</span></h1>
+        <p class="lead">Рейтинг классов нашей школы. Баллы начисляются каждую четверть за учёбу, дисциплину, участие в жизни школы и добрые дела. По итогам года в каждой лиге выбираем лучший класс.</p>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <nav class="periods" aria-label="Период рейтинга">
+        <div class="seg" id="period-switch" role="group"></div>
+        <p class="period-note" id="period-note"></p>
+      </nav>
+
+      <section class="leagues" id="leagues" aria-live="polite"></section>
+
+      <section class="legend-wrap" aria-label="Критерии">
+        <ul class="legend" id="legend"></ul>
+      </section>
+
+      <section class="block" id="journal-section">
+        <div class="block-head">
+          <h2>Журнал начислений</h2>
+          <label class="select">
+            <span class="sr-only">Класс</span>
+            <select id="journal-class"></select>
+          </label>
+        </div>
+        <p class="block-sub">Каждое начисление с датой и причиной — чтобы всем было видно, за что класс получил баллы.</p>
+        <div id="journal"></div>
+      </section>
+
+      <section class="block" id="rules">
+        <div class="block-head"><h2>Положение о конкурсе</h2></div>
+        <div class="rules-grid">
+          <div class="rule-card">
+            <h3>Две лиги</h3>
+            <p>Младшая лига — 2, 3 и 4 классы. Старшая лига — 5-6, 7-8 и 9 классы. В каждой лиге свой рейтинг и свой «Класс года».</p>
+          </div>
+          <div class="rule-card">
+            <h3>100 баллов за четверть</h3>
+            <p>За каждую четверть класс может набрать до 100 баллов. Итог года — сумма четырёх четвертей, максимум 400.</p>
+          </div>
+          <div class="rule-card">
+            <h3>Не только оценки</h3>
+            <p>Учёба и посещаемость дают 40 баллов, а 60 — дисциплина, порядок, мероприятия, конкурсы и добрые дела. Побеждает самый активный класс.</p>
+          </div>
+          <div class="rule-card">
+            <h3>Равенство баллов</h3>
+            <p>Если по итогам года баллы равны, выше класс, который чаще был лидером четверти, затем — у кого больше баллов за мероприятия и добрые дела.</p>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="criteria-table">
+            <thead>
+              <tr><th scope="col">Критерий</th><th scope="col">Макс.</th><th scope="col">Как начисляется</th><th scope="col">Кто вносит</th></tr>
+            </thead>
+            <tbody id="criteria-body"></tbody>
+            <tfoot>
+              <tr><th scope="row">Итого за четверть</th><td class="num">100</td><td colspan="2"></td></tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <p id="updated"></p>
+        <p id="warnings" class="warn" hidden></p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
